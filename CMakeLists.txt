@@ -15,6 +15,11 @@ set(SRCS
   src/asio.cpp
   )
 
+if (UNIX)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++11")
+endif (UNIX)
+
 source_group("Header Files" FILES ${HDRS})
 source_group("Source Files" FILES ${SRCS})
 
@@ -26,7 +31,7 @@ endif (WIN32)
 
 add_library(asio STATIC ${HDRS} ${SRCS})
 
- target_include_directories(asio
-    PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/
-    )
+target_include_directories(asio
+  PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/
+  )
